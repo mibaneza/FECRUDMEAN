@@ -1,0 +1,74 @@
+<h2 mat-dialog-title> {{data.accion}} {{data.tipo}}</h2>
+<form [formGroup]="contactForm">
+  <div mat-dialog-content>
+
+    <div *ngIf="idPersonaga">
+      <mat-form-field >
+        <mat-label>Nombre Padre</mat-label>
+        <select formControlName="idPersona" matNativeControl [(ngModel)]="data.model.idPersona" name="idpersona"
+        
+        > 
+          <option value="" selected></option>
+          <option *ngFor="let persona of personaList" [value]="persona._id">
+            {{persona.nombre_completo}}
+          </option>
+        </select>
+      </mat-form-field>
+    </div>
+
+
+
+
+
+
+
+
+    <mat-form-field class="col-12">
+      <input  formControlName="nombre" required
+        [ngClass]="{'is-invalid': nombre.touched &&  nombre.invalid}" matInput
+        placeholder="nombres" [(ngModel)]="data.model.nombre">
+      <mat-error *ngIf="nombre.errors?.required">
+        Se <strong>requiere</strong> el nombres.
+      </mat-error>
+      <mat-error *ngIf="nombre.errors?.minlength">
+        El nombre debe tener al menos 6 digitos.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="col-12">
+        <input  formControlName="apellido" required
+          [ngClass]="{'is-invalid': apellido.touched &&  apellido.invalid}" matInput
+          placeholder="apellido" [(ngModel)]="data.model.apellido">
+        <mat-error *ngIf="apellido.errors?.required">
+          Se <strong>requiere</strong> el apellido.
+        </mat-error>
+        <mat-error *ngIf="apellido.errors?.minlength">
+          El apellido debe tener al menos 6 digitos.
+        </mat-error>
+      </mat-form-field>
+   
+    <mat-form-field class="col-12">
+      <input formControlName="fecNac" required type="date"  value="{{data.model.fecNac| date:'yyyy-MM-dd'}}" 
+        [ngClass]="{'is-invalid': fecNac.touched &&  fecNac.invalid}" matInput
+        placeholder="Fecha de nacimiento" [(ngModel)]="data.model.fecNac"
+        >
+      <mat-error *ngIf="fecNac.errors?.required">
+        Se <strong>requiere</strong> la fecha de nacimiento.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="col-12">
+      <input formControlName="fecIngreso" required type="date" value="{{data.model.fecIngreso| date:'yyyy-MM-dd'}}"
+        [ngClass]="{'is-invalid': fecIngreso.touched &&  fecIngreso.invalid}" matInput
+        placeholder="Fecha de ingreso" [(ngModel)]="data.model.fecIngreso"
+        
+        >
+      <mat-error *ngIf="fecIngreso.errors?.required">
+        Se <strong>requiere</strong> la fecha de ingreso.
+      </mat-error>
+    </mat-form-field>
+
+  </div>
+  <div mat-dialog-actions >
+    <button mat-button (click)="onNoClick()">Cancelar</button>
+    <button type="submit" mat-button [mat-dialog-close]="this.onForm(data)"  [disabled]="!contactForm.valid" cdkFocusInitial>{{data.accion}}</button>
+  </div>
+</form>

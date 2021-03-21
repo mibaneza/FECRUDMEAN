@@ -1,0 +1,33 @@
+footer{
+    background-color: #000000;
+    width:  100% !important;
+  }
+  footer div div h3{
+    font-size: 1.3em;
+    color:#ffffff;
+  }
+  .footer-text {
+    font-size: 0.9em;
+    color:#dce0ffcc;
+  }
+  @media screen and (max-width: 600px) {
+    footer div div h3{
+      font-size: 1.3em;
+      color:#ffffff;
+    }
+    .footer-text{
+      font-size: 0.8em;
+    }
+  }
+  
+  .hyphenation {
+    word-break: break-all;
+    /* Non standard for webkit */
+    //   word-break: break-word;
+  
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+  }
+  
